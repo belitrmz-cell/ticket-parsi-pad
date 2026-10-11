@@ -3,6 +3,7 @@ import { createFileRoute, useParams } from "@tanstack/react-router";
 import { OperatorGate } from "@/components/OperatorGate";
 import { EntryScanner } from "@/components/EntryScanner";
 import { getDeviceId } from "@/lib/device";
+import { panelPwaHead } from "@/lib/pwa";
 
 export const Route = createFileRoute("/entry/$token")({
   head: () => {

@@ -12,6 +12,7 @@ import {
   CalendarClock,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { panelPwaHead } from "@/lib/pwa";
 import { AppShell } from "@/components/AppShell";
 
 export const Route = createFileRoute("/director/_shell")({

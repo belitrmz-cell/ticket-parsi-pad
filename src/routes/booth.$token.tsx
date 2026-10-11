@@ -9,6 +9,7 @@ import { BoothTicketList } from "@/components/BoothTicketList";
 import { BoothTicketCheck } from "@/components/BoothTicketCheck";
 import { useQueryClient } from "@tanstack/react-query";
 import { getDeviceId } from "@/lib/device";
+import { panelPwaHead } from "@/lib/pwa";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/booth/$token")({
