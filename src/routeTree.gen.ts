@@ -32,6 +32,8 @@ import { Route as DirectorShellSettingsRouteImport } from './routes/director._sh
 import { Route as DirectorShellShowsRouteImport } from './routes/director._shell.shows'
 import { Route as DirectorShellTicketsRouteImport } from './routes/director._shell.tickets'
 import { Route as DirectorHallsHallIdRouteImport } from './routes/director.halls.$hallId'
+import { Route as ApiPublicManifestPanelRouteImport } from './routes/api/public/manifest.$panel'
+import { Route as ApiPublicPanelIconPanelRouteImport } from './routes/api/public/panel-icon.$panel'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -148,6 +150,16 @@ const DirectorHallsHallIdRoute = DirectorHallsHallIdRouteImport.update({
   path: '/director/halls/$hallId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicManifestPanelRoute = ApiPublicManifestPanelRouteImport.update({
+  id: '/api/public/manifest/$panel',
+  path: '/api/public/manifest/$panel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicPanelIconPanelRoute = ApiPublicPanelIconPanelRouteImport.update({
+  id: '/api/public/panel-icon/$panel',
+  path: '/api/public/panel-icon/$panel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -173,6 +185,8 @@ export interface FileRoutesByFullPath {
   '/director/shows': typeof DirectorShellShowsRoute
   '/director/tickets': typeof DirectorShellTicketsRoute
   '/director/halls/$hallId': typeof DirectorHallsHallIdRoute
+  '/api/public/manifest/$panel': typeof ApiPublicManifestPanelRoute
+  '/api/public/panel-icon/$panel': typeof ApiPublicPanelIconPanelRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -198,6 +212,8 @@ export interface FileRoutesByTo {
   '/director/shows': typeof DirectorShellShowsRoute
   '/director/tickets': typeof DirectorShellTicketsRoute
   '/director/halls/$hallId': typeof DirectorHallsHallIdRoute
+  '/api/public/manifest/$panel': typeof ApiPublicManifestPanelRoute
+  '/api/public/panel-icon/$panel': typeof ApiPublicPanelIconPanelRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -224,6 +240,8 @@ export interface FileRoutesById {
   '/director/_shell/shows': typeof DirectorShellShowsRoute
   '/director/_shell/tickets': typeof DirectorShellTicketsRoute
   '/director/halls/$hallId': typeof DirectorHallsHallIdRoute
+  '/api/public/manifest/$panel': typeof ApiPublicManifestPanelRoute
+  '/api/public/panel-icon/$panel': typeof ApiPublicPanelIconPanelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -251,6 +269,8 @@ export interface FileRouteTypes {
     | '/director/shows'
     | '/director/tickets'
     | '/director/halls/$hallId'
+    | '/api/public/manifest/$panel'
+    | '/api/public/panel-icon/$panel'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -276,6 +296,8 @@ export interface FileRouteTypes {
     | '/director/shows'
     | '/director/tickets'
     | '/director/halls/$hallId'
+    | '/api/public/manifest/$panel'
+    | '/api/public/panel-icon/$panel'
   id:
     | '__root__'
     | '/'
@@ -301,6 +323,8 @@ export interface FileRouteTypes {
     | '/director/_shell/shows'
     | '/director/_shell/tickets'
     | '/director/halls/$hallId'
+    | '/api/public/manifest/$panel'
+    | '/api/public/panel-icon/$panel'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -313,6 +337,8 @@ export interface RootRouteChildren {
   DirectorShellRoute: typeof DirectorShellRouteWithChildren
   EntryTokenRoute: typeof EntryTokenRoute
   DirectorHallsHallIdRoute: typeof DirectorHallsHallIdRoute
+  ApiPublicManifestPanelRoute: typeof ApiPublicManifestPanelRoute
+  ApiPublicPanelIconPanelRoute: typeof ApiPublicPanelIconPanelRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -478,6 +504,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DirectorHallsHallIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/manifest/$panel': {
+      id: '/api/public/manifest/$panel'
+      path: '/api/public/manifest/$panel'
+      fullPath: '/api/public/manifest/$panel'
+      preLoaderRoute: typeof ApiPublicManifestPanelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/panel-icon/$panel': {
+      id: '/api/public/panel-icon/$panel'
+      path: '/api/public/panel-icon/$panel'
+      fullPath: '/api/public/panel-icon/$panel'
+      preLoaderRoute: typeof ApiPublicPanelIconPanelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -539,6 +579,8 @@ const rootRouteChildren: RootRouteChildren = {
   DirectorShellRoute: DirectorShellRouteWithChildren,
   EntryTokenRoute: EntryTokenRoute,
   DirectorHallsHallIdRoute: DirectorHallsHallIdRoute,
+  ApiPublicManifestPanelRoute: ApiPublicManifestPanelRoute,
+  ApiPublicPanelIconPanelRoute: ApiPublicPanelIconPanelRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

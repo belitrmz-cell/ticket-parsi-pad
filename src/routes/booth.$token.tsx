@@ -9,19 +9,25 @@ import { BoothTicketList } from "@/components/BoothTicketList";
 import { BoothTicketCheck } from "@/components/BoothTicketCheck";
 import { useQueryClient } from "@tanstack/react-query";
 import { getDeviceId } from "@/lib/device";
+import { panelPwaHead } from "@/lib/pwa";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/booth/$token")({
-  head: () => ({
-    meta: [
-      { title: "باجه فروش بلیت | سامانه بلیت" },
-      { name: "description", content: "ورود اپراتور باجه برای فروش حضوری بلیت نمایش." },
-      { property: "og:title", content: "باجه فروش بلیت" },
-      { property: "og:description", content: "ورود اپراتور باجه برای فروش حضوری بلیت نمایش." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-    ],
-  }),
+  head: () => {
+    const pwa = panelPwaHead("booth");
+    return {
+      meta: [
+        { title: "باجه فروش بلیت | سامانه بلیت" },
+        { name: "description", content: "ورود اپراتور باجه برای فروش حضوری بلیت نمایش." },
+        { property: "og:title", content: "باجه فروش بلیت" },
+        { property: "og:description", content: "ورود اپراتور باجه برای فروش حضوری بلیت نمایش." },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary" },
+        ...pwa.meta,
+      ],
+      links: pwa.links,
+    };
+  },
   component: BoothPage,
 });
 

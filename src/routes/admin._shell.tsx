@@ -10,9 +10,11 @@ import {
   Loader2,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { panelPwaHead } from "@/lib/pwa";
 import { AppShell } from "@/components/AppShell";
 
 export const Route = createFileRoute("/admin/_shell")({
+  head: () => panelPwaHead("admin"),
   component: AdminShell,
 });
 
