@@ -13,6 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { AppShell } from "@/components/AppShell";
 
 export const Route = createFileRoute("/admin/_shell")({
+  head: () => panelPwaHead("admin"),
   component: AdminShell,
 });
 

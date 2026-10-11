@@ -5,16 +5,21 @@ import { EntryScanner } from "@/components/EntryScanner";
 import { getDeviceId } from "@/lib/device";
 
 export const Route = createFileRoute("/entry/$token")({
-  head: () => ({
-    meta: [
-      { title: "کنترل ورود | سامانه بلیت" },
-      { name: "description", content: "ورود اپراتور کنترل ورودی برای بررسی و اسکن بلیت‌ها." },
-      { property: "og:title", content: "کنترل ورود" },
-      { property: "og:description", content: "ورود اپراتور کنترل ورودی برای بررسی و اسکن بلیت‌ها." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-    ],
-  }),
+  head: () => {
+    const pwa = panelPwaHead("entry");
+    return {
+      meta: [
+        { title: "کنترل ورود | سامانه بلیت" },
+        { name: "description", content: "ورود اپراتور کنترل ورودی برای بررسی و اسکن بلیت‌ها." },
+        { property: "og:title", content: "کنترل ورود" },
+        { property: "og:description", content: "ورود اپراتور کنترل ورودی برای بررسی و اسکن بلیت‌ها." },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary" },
+        ...pwa.meta,
+      ],
+      links: pwa.links,
+    };
+  },
   component: EntryPage,
 });
 

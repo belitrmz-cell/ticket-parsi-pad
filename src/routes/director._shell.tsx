@@ -15,6 +15,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { AppShell } from "@/components/AppShell";
 
 export const Route = createFileRoute("/director/_shell")({
+  head: () => panelPwaHead("director"),
   component: DirectorShell,
 });
 

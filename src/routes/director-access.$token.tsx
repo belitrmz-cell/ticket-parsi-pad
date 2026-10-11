@@ -12,14 +12,19 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const Route = createFileRoute("/director-access/$token")({
-  head: () => ({
-    meta: [
-      { title: "ورود و ثبت‌نام کارگردان | سامانه بلیت" },
-      { name: "description", content: "ثبت‌نام و ورود کارگردان‌ها به پنل مدیریت نمایش و سالن." },
-      { property: "og:title", content: "ورود و ثبت‌نام کارگردان" },
-      { property: "og:description", content: "پنل کارگردان: سالن، نمایش، سانس، بلیت و گزارش." },
-    ],
-  }),
+  head: () => {
+    const pwa = panelPwaHead("director");
+    return {
+      meta: [
+        { title: "ورود و ثبت‌نام کارگردان | سامانه بلیت" },
+        { name: "description", content: "ثبت‌نام و ورود کارگردان‌ها به پنل مدیریت نمایش و سالن." },
+        { property: "og:title", content: "ورود و ثبت‌نام کارگردان" },
+        { property: "og:description", content: "پنل کارگردان: سالن، نمایش، سانس، بلیت و گزارش." },
+        ...pwa.meta,
+      ],
+      links: pwa.links,
+    };
+  },
   component: DirectorGate,
 });
 

@@ -17,14 +17,19 @@ import {
 } from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/admin/login")({
-  head: () => ({
-    meta: [
-      { title: "ورود مدیر | سامانه بلیت" },
-      { name: "description", content: "ورود مدیر سامانه به پنل مدیریت نمایش‌ها و کارگردان‌ها." },
-      { property: "og:title", content: "ورود مدیر | سامانه بلیت" },
-      { property: "og:description", content: "ورود مدیر سامانه به پنل مدیریت." },
-    ],
-  }),
+  head: () => {
+    const pwa = panelPwaHead("admin");
+    return {
+      meta: [
+        { title: "ورود مدیر | سامانه بلیت" },
+        { name: "description", content: "ورود مدیر سامانه به پنل مدیریت نمایش‌ها و کارگردان‌ها." },
+        { property: "og:title", content: "ورود مدیر | سامانه بلیت" },
+        { property: "og:description", content: "ورود مدیر سامانه به پنل مدیریت." },
+        ...pwa.meta,
+      ],
+      links: pwa.links,
+    };
+  },
   component: AdminLogin,
 });
 
