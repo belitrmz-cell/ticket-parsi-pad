@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PANEL_KEYS, type PanelKey } from "@/lib/panel-icons.functions";
 
-function dataUrlToBytes(dataUrl: string): { bytes: Uint8Array; contentType: string } | null {
+function dataUrlToBytes(dataUrl: string): { bytes: Uint8Array<ArrayBuffer>; contentType: string } | null {
   const match = /^data:(image\/[a-zA-Z0-9.+-]+);base64,(.+)$/.exec(dataUrl);
   if (!match) return null;
   const contentType = match[1]!;
   const base64 = match[2]!;
   const bin = atob(base64);
-  const bytes = new Uint8Array(bin.length);
+  const bytes = new Uint8Array(new ArrayBuffer(bin.length));
   for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
   return { bytes, contentType };
 }
