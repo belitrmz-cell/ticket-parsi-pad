@@ -19,14 +19,20 @@ export const Route = createFileRoute("/api/public/panel-icon/$panel")({
         const panel = params.panel as PanelKey;
         if (!PANEL_KEYS.includes(panel)) return new Response("Not found", { status: 404 });
 
-        const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-        const { data } = await supabaseAdmin
-          .from("app_settings")
-          .select("value")
-          .eq("key", `panel_icon_${panel}`)
-          .maybeSingle();
+        let iconValue: string | null = null;
+        try {
+          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { data } = await supabaseAdmin
+            .from("app_settings")
+            .select("value")
+            .eq("key", `panel_icon_${panel}`)
+            .maybeSingle();
+          iconValue = data?.value ?? null;
+        } catch {
+          // Service key not configured in this environment — fall through to favicon.
+        }
 
-        const parsed = data?.value ? dataUrlToBytes(data.value) : null;
+        const parsed = iconValue ? dataUrlToBytes(iconValue) : null;
         if (!parsed) {
           // No custom icon uploaded yet — fall back to the site favicon.
           return new Response(null, {
