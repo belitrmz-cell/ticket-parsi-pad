@@ -1,0 +1,76 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1788763324653,
+      "tag": "0000_theater_core_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789017455255,
+      "tag": "0001_operator_access_enhancements",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789017511390,
+      "tag": "0002_operator_access_device_label",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790979174956,
+      "tag": "0003_show_session_ownership",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791000479446,
+      "tag": "0004_booth_sale",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791004583578,
+      "tag": "0005_session_unique",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1791170597905,
+      "tag": "0006_row_price_and_safe_delete",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1791375687096,
+      "tag": "0007_noop_check",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1791427811161,
+      "tag": "0008_add_session_switch_minutes",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1791688394989,
+      "tag": "0009_allow_resell_cancelled_seats",
+      "breakpoints": true
+    }
+  ]
+}
