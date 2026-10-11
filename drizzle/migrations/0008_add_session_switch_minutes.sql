@@ -1,0 +1,1 @@
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS session_switch_minutes integer NOT NULL DEFAULT 60;

@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX IF NOT EXISTS show_sessions_show_start_unique ON public.show_sessions (show_id, starts_at);

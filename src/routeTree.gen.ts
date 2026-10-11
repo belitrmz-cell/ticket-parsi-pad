@@ -10,33 +10,309 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminShellRouteImport } from './routes/admin._shell'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as BoothTokenRouteImport } from './routes/booth.$token'
+import { Route as DTokenRouteImport } from './routes/d.$token'
+import { Route as DirectorAccessTokenRouteImport } from './routes/director-access.$token'
+import { Route as DirectorShellRouteImport } from './routes/director._shell'
+import { Route as EntryTokenRouteImport } from './routes/entry.$token'
+import { Route as AdminShellDashboardRouteImport } from './routes/admin._shell.dashboard'
+import { Route as AdminShellDirectorsRouteImport } from './routes/admin._shell.directors'
+import { Route as AdminShellReportsRouteImport } from './routes/admin._shell.reports'
+import { Route as AdminShellRequestsRouteImport } from './routes/admin._shell.requests'
+import { Route as AdminShellSettingsRouteImport } from './routes/admin._shell.settings'
+import { Route as AdminShellShowsRouteImport } from './routes/admin._shell.shows'
+import { Route as DirectorShellDashboardRouteImport } from './routes/director._shell.dashboard'
+import { Route as DirectorShellHallsRouteImport } from './routes/director._shell.halls'
+import { Route as DirectorShellOperatorsRouteImport } from './routes/director._shell.operators'
+import { Route as DirectorShellReportsRouteImport } from './routes/director._shell.reports'
+import { Route as DirectorShellSessionsRouteImport } from './routes/director._shell.sessions'
+import { Route as DirectorShellSettingsRouteImport } from './routes/director._shell.settings'
+import { Route as DirectorShellShowsRouteImport } from './routes/director._shell.shows'
+import { Route as DirectorShellTicketsRouteImport } from './routes/director._shell.tickets'
+import { Route as DirectorHallsHallIdRouteImport } from './routes/director.halls.$hallId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminShellRoute = AdminShellRouteImport.update({
+  id: '/admin/_shell',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BoothTokenRoute = BoothTokenRouteImport.update({
+  id: '/booth/$token',
+  path: '/booth/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DTokenRoute = DTokenRouteImport.update({
+  id: '/d/$token',
+  path: '/d/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DirectorAccessTokenRoute = DirectorAccessTokenRouteImport.update({
+  id: '/director-access/$token',
+  path: '/director-access/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DirectorShellRoute = DirectorShellRouteImport.update({
+  id: '/director/_shell',
+  path: '/director',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EntryTokenRoute = EntryTokenRouteImport.update({
+  id: '/entry/$token',
+  path: '/entry/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminShellDashboardRoute = AdminShellDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AdminShellRoute,
+} as any)
+const AdminShellDirectorsRoute = AdminShellDirectorsRouteImport.update({
+  id: '/directors',
+  path: '/directors',
+  getParentRoute: () => AdminShellRoute,
+} as any)
+const AdminShellReportsRoute = AdminShellReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AdminShellRoute,
+} as any)
+const AdminShellRequestsRoute = AdminShellRequestsRouteImport.update({
+  id: '/requests',
+  path: '/requests',
+  getParentRoute: () => AdminShellRoute,
+} as any)
+const AdminShellSettingsRoute = AdminShellSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminShellRoute,
+} as any)
+const AdminShellShowsRoute = AdminShellShowsRouteImport.update({
+  id: '/shows',
+  path: '/shows',
+  getParentRoute: () => AdminShellRoute,
+} as any)
+const DirectorShellDashboardRoute = DirectorShellDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => DirectorShellRoute,
+} as any)
+const DirectorShellHallsRoute = DirectorShellHallsRouteImport.update({
+  id: '/halls',
+  path: '/halls',
+  getParentRoute: () => DirectorShellRoute,
+} as any)
+const DirectorShellOperatorsRoute = DirectorShellOperatorsRouteImport.update({
+  id: '/operators',
+  path: '/operators',
+  getParentRoute: () => DirectorShellRoute,
+} as any)
+const DirectorShellReportsRoute = DirectorShellReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => DirectorShellRoute,
+} as any)
+const DirectorShellSessionsRoute = DirectorShellSessionsRouteImport.update({
+  id: '/sessions',
+  path: '/sessions',
+  getParentRoute: () => DirectorShellRoute,
+} as any)
+const DirectorShellSettingsRoute = DirectorShellSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DirectorShellRoute,
+} as any)
+const DirectorShellShowsRoute = DirectorShellShowsRouteImport.update({
+  id: '/shows',
+  path: '/shows',
+  getParentRoute: () => DirectorShellRoute,
+} as any)
+const DirectorShellTicketsRoute = DirectorShellTicketsRouteImport.update({
+  id: '/tickets',
+  path: '/tickets',
+  getParentRoute: () => DirectorShellRoute,
+} as any)
+const DirectorHallsHallIdRoute = DirectorHallsHallIdRouteImport.update({
+  id: '/director/halls/$hallId',
+  path: '/director/halls/$hallId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminShellRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/booth/$token': typeof BoothTokenRoute
+  '/d/$token': typeof DTokenRoute
+  '/director-access/$token': typeof DirectorAccessTokenRoute
+  '/director': typeof DirectorShellRouteWithChildren
+  '/entry/$token': typeof EntryTokenRoute
+  '/admin/dashboard': typeof AdminShellDashboardRoute
+  '/admin/directors': typeof AdminShellDirectorsRoute
+  '/admin/reports': typeof AdminShellReportsRoute
+  '/admin/requests': typeof AdminShellRequestsRoute
+  '/admin/settings': typeof AdminShellSettingsRoute
+  '/admin/shows': typeof AdminShellShowsRoute
+  '/director/dashboard': typeof DirectorShellDashboardRoute
+  '/director/halls': typeof DirectorShellHallsRoute
+  '/director/operators': typeof DirectorShellOperatorsRoute
+  '/director/reports': typeof DirectorShellReportsRoute
+  '/director/sessions': typeof DirectorShellSessionsRoute
+  '/director/settings': typeof DirectorShellSettingsRoute
+  '/director/shows': typeof DirectorShellShowsRoute
+  '/director/tickets': typeof DirectorShellTicketsRoute
+  '/director/halls/$hallId': typeof DirectorHallsHallIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminShellRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/booth/$token': typeof BoothTokenRoute
+  '/d/$token': typeof DTokenRoute
+  '/director-access/$token': typeof DirectorAccessTokenRoute
+  '/director': typeof DirectorShellRouteWithChildren
+  '/entry/$token': typeof EntryTokenRoute
+  '/admin/dashboard': typeof AdminShellDashboardRoute
+  '/admin/directors': typeof AdminShellDirectorsRoute
+  '/admin/reports': typeof AdminShellReportsRoute
+  '/admin/requests': typeof AdminShellRequestsRoute
+  '/admin/settings': typeof AdminShellSettingsRoute
+  '/admin/shows': typeof AdminShellShowsRoute
+  '/director/dashboard': typeof DirectorShellDashboardRoute
+  '/director/halls': typeof DirectorShellHallsRoute
+  '/director/operators': typeof DirectorShellOperatorsRoute
+  '/director/reports': typeof DirectorShellReportsRoute
+  '/director/sessions': typeof DirectorShellSessionsRoute
+  '/director/settings': typeof DirectorShellSettingsRoute
+  '/director/shows': typeof DirectorShellShowsRoute
+  '/director/tickets': typeof DirectorShellTicketsRoute
+  '/director/halls/$hallId': typeof DirectorHallsHallIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/_shell': typeof AdminShellRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/booth/$token': typeof BoothTokenRoute
+  '/d/$token': typeof DTokenRoute
+  '/director-access/$token': typeof DirectorAccessTokenRoute
+  '/director/_shell': typeof DirectorShellRouteWithChildren
+  '/entry/$token': typeof EntryTokenRoute
+  '/admin/_shell/dashboard': typeof AdminShellDashboardRoute
+  '/admin/_shell/directors': typeof AdminShellDirectorsRoute
+  '/admin/_shell/reports': typeof AdminShellReportsRoute
+  '/admin/_shell/requests': typeof AdminShellRequestsRoute
+  '/admin/_shell/settings': typeof AdminShellSettingsRoute
+  '/admin/_shell/shows': typeof AdminShellShowsRoute
+  '/director/_shell/dashboard': typeof DirectorShellDashboardRoute
+  '/director/_shell/halls': typeof DirectorShellHallsRoute
+  '/director/_shell/operators': typeof DirectorShellOperatorsRoute
+  '/director/_shell/reports': typeof DirectorShellReportsRoute
+  '/director/_shell/sessions': typeof DirectorShellSessionsRoute
+  '/director/_shell/settings': typeof DirectorShellSettingsRoute
+  '/director/_shell/shows': typeof DirectorShellShowsRoute
+  '/director/_shell/tickets': typeof DirectorShellTicketsRoute
+  '/director/halls/$hallId': typeof DirectorHallsHallIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/admin/login'
+    | '/booth/$token'
+    | '/d/$token'
+    | '/director-access/$token'
+    | '/director'
+    | '/entry/$token'
+    | '/admin/dashboard'
+    | '/admin/directors'
+    | '/admin/reports'
+    | '/admin/requests'
+    | '/admin/settings'
+    | '/admin/shows'
+    | '/director/dashboard'
+    | '/director/halls'
+    | '/director/operators'
+    | '/director/reports'
+    | '/director/sessions'
+    | '/director/settings'
+    | '/director/shows'
+    | '/director/tickets'
+    | '/director/halls/$hallId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/admin/login'
+    | '/booth/$token'
+    | '/d/$token'
+    | '/director-access/$token'
+    | '/director'
+    | '/entry/$token'
+    | '/admin/dashboard'
+    | '/admin/directors'
+    | '/admin/reports'
+    | '/admin/requests'
+    | '/admin/settings'
+    | '/admin/shows'
+    | '/director/dashboard'
+    | '/director/halls'
+    | '/director/operators'
+    | '/director/reports'
+    | '/director/sessions'
+    | '/director/settings'
+    | '/director/shows'
+    | '/director/tickets'
+    | '/director/halls/$hallId'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin/_shell'
+    | '/admin/login'
+    | '/booth/$token'
+    | '/d/$token'
+    | '/director-access/$token'
+    | '/director/_shell'
+    | '/entry/$token'
+    | '/admin/_shell/dashboard'
+    | '/admin/_shell/directors'
+    | '/admin/_shell/reports'
+    | '/admin/_shell/requests'
+    | '/admin/_shell/settings'
+    | '/admin/_shell/shows'
+    | '/director/_shell/dashboard'
+    | '/director/_shell/halls'
+    | '/director/_shell/operators'
+    | '/director/_shell/reports'
+    | '/director/_shell/sessions'
+    | '/director/_shell/settings'
+    | '/director/_shell/shows'
+    | '/director/_shell/tickets'
+    | '/director/halls/$hallId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminShellRoute: typeof AdminShellRouteWithChildren
+  AdminLoginRoute: typeof AdminLoginRoute
+  BoothTokenRoute: typeof BoothTokenRoute
+  DTokenRoute: typeof DTokenRoute
+  DirectorAccessTokenRoute: typeof DirectorAccessTokenRoute
+  DirectorShellRoute: typeof DirectorShellRouteWithChildren
+  EntryTokenRoute: typeof EntryTokenRoute
+  DirectorHallsHallIdRoute: typeof DirectorHallsHallIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +324,221 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/_shell': {
+      id: '/admin/_shell'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminShellRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/booth/$token': {
+      id: '/booth/$token'
+      path: '/booth/$token'
+      fullPath: '/booth/$token'
+      preLoaderRoute: typeof BoothTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/d/$token': {
+      id: '/d/$token'
+      path: '/d/$token'
+      fullPath: '/d/$token'
+      preLoaderRoute: typeof DTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/director-access/$token': {
+      id: '/director-access/$token'
+      path: '/director-access/$token'
+      fullPath: '/director-access/$token'
+      preLoaderRoute: typeof DirectorAccessTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/director/_shell': {
+      id: '/director/_shell'
+      path: '/director'
+      fullPath: '/director'
+      preLoaderRoute: typeof DirectorShellRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/entry/$token': {
+      id: '/entry/$token'
+      path: '/entry/$token'
+      fullPath: '/entry/$token'
+      preLoaderRoute: typeof EntryTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/_shell/dashboard': {
+      id: '/admin/_shell/dashboard'
+      path: '/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminShellDashboardRouteImport
+      parentRoute: typeof AdminShellRoute
+    }
+    '/admin/_shell/directors': {
+      id: '/admin/_shell/directors'
+      path: '/directors'
+      fullPath: '/admin/directors'
+      preLoaderRoute: typeof AdminShellDirectorsRouteImport
+      parentRoute: typeof AdminShellRoute
+    }
+    '/admin/_shell/reports': {
+      id: '/admin/_shell/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AdminShellReportsRouteImport
+      parentRoute: typeof AdminShellRoute
+    }
+    '/admin/_shell/requests': {
+      id: '/admin/_shell/requests'
+      path: '/requests'
+      fullPath: '/admin/requests'
+      preLoaderRoute: typeof AdminShellRequestsRouteImport
+      parentRoute: typeof AdminShellRoute
+    }
+    '/admin/_shell/settings': {
+      id: '/admin/_shell/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminShellSettingsRouteImport
+      parentRoute: typeof AdminShellRoute
+    }
+    '/admin/_shell/shows': {
+      id: '/admin/_shell/shows'
+      path: '/shows'
+      fullPath: '/admin/shows'
+      preLoaderRoute: typeof AdminShellShowsRouteImport
+      parentRoute: typeof AdminShellRoute
+    }
+    '/director/_shell/dashboard': {
+      id: '/director/_shell/dashboard'
+      path: '/dashboard'
+      fullPath: '/director/dashboard'
+      preLoaderRoute: typeof DirectorShellDashboardRouteImport
+      parentRoute: typeof DirectorShellRoute
+    }
+    '/director/_shell/halls': {
+      id: '/director/_shell/halls'
+      path: '/halls'
+      fullPath: '/director/halls'
+      preLoaderRoute: typeof DirectorShellHallsRouteImport
+      parentRoute: typeof DirectorShellRoute
+    }
+    '/director/_shell/operators': {
+      id: '/director/_shell/operators'
+      path: '/operators'
+      fullPath: '/director/operators'
+      preLoaderRoute: typeof DirectorShellOperatorsRouteImport
+      parentRoute: typeof DirectorShellRoute
+    }
+    '/director/_shell/reports': {
+      id: '/director/_shell/reports'
+      path: '/reports'
+      fullPath: '/director/reports'
+      preLoaderRoute: typeof DirectorShellReportsRouteImport
+      parentRoute: typeof DirectorShellRoute
+    }
+    '/director/_shell/sessions': {
+      id: '/director/_shell/sessions'
+      path: '/sessions'
+      fullPath: '/director/sessions'
+      preLoaderRoute: typeof DirectorShellSessionsRouteImport
+      parentRoute: typeof DirectorShellRoute
+    }
+    '/director/_shell/settings': {
+      id: '/director/_shell/settings'
+      path: '/settings'
+      fullPath: '/director/settings'
+      preLoaderRoute: typeof DirectorShellSettingsRouteImport
+      parentRoute: typeof DirectorShellRoute
+    }
+    '/director/_shell/shows': {
+      id: '/director/_shell/shows'
+      path: '/shows'
+      fullPath: '/director/shows'
+      preLoaderRoute: typeof DirectorShellShowsRouteImport
+      parentRoute: typeof DirectorShellRoute
+    }
+    '/director/_shell/tickets': {
+      id: '/director/_shell/tickets'
+      path: '/tickets'
+      fullPath: '/director/tickets'
+      preLoaderRoute: typeof DirectorShellTicketsRouteImport
+      parentRoute: typeof DirectorShellRoute
+    }
+    '/director/halls/$hallId': {
+      id: '/director/halls/$hallId'
+      path: '/director/halls/$hallId'
+      fullPath: '/director/halls/$hallId'
+      preLoaderRoute: typeof DirectorHallsHallIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AdminShellRouteChildren {
+  AdminShellDashboardRoute: typeof AdminShellDashboardRoute
+  AdminShellDirectorsRoute: typeof AdminShellDirectorsRoute
+  AdminShellReportsRoute: typeof AdminShellReportsRoute
+  AdminShellRequestsRoute: typeof AdminShellRequestsRoute
+  AdminShellSettingsRoute: typeof AdminShellSettingsRoute
+  AdminShellShowsRoute: typeof AdminShellShowsRoute
+}
+
+const AdminShellRouteChildren: AdminShellRouteChildren = {
+  AdminShellDashboardRoute: AdminShellDashboardRoute,
+  AdminShellDirectorsRoute: AdminShellDirectorsRoute,
+  AdminShellReportsRoute: AdminShellReportsRoute,
+  AdminShellRequestsRoute: AdminShellRequestsRoute,
+  AdminShellSettingsRoute: AdminShellSettingsRoute,
+  AdminShellShowsRoute: AdminShellShowsRoute,
+}
+
+const AdminShellRouteWithChildren = AdminShellRoute._addFileChildren(
+  AdminShellRouteChildren,
+)
+
+interface DirectorShellRouteChildren {
+  DirectorShellDashboardRoute: typeof DirectorShellDashboardRoute
+  DirectorShellHallsRoute: typeof DirectorShellHallsRoute
+  DirectorShellOperatorsRoute: typeof DirectorShellOperatorsRoute
+  DirectorShellReportsRoute: typeof DirectorShellReportsRoute
+  DirectorShellSessionsRoute: typeof DirectorShellSessionsRoute
+  DirectorShellSettingsRoute: typeof DirectorShellSettingsRoute
+  DirectorShellShowsRoute: typeof DirectorShellShowsRoute
+  DirectorShellTicketsRoute: typeof DirectorShellTicketsRoute
+}
+
+const DirectorShellRouteChildren: DirectorShellRouteChildren = {
+  DirectorShellDashboardRoute: DirectorShellDashboardRoute,
+  DirectorShellHallsRoute: DirectorShellHallsRoute,
+  DirectorShellOperatorsRoute: DirectorShellOperatorsRoute,
+  DirectorShellReportsRoute: DirectorShellReportsRoute,
+  DirectorShellSessionsRoute: DirectorShellSessionsRoute,
+  DirectorShellSettingsRoute: DirectorShellSettingsRoute,
+  DirectorShellShowsRoute: DirectorShellShowsRoute,
+  DirectorShellTicketsRoute: DirectorShellTicketsRoute,
+}
+
+const DirectorShellRouteWithChildren = DirectorShellRoute._addFileChildren(
+  DirectorShellRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminShellRoute: AdminShellRouteWithChildren,
+  AdminLoginRoute: AdminLoginRoute,
+  BoothTokenRoute: BoothTokenRoute,
+  DTokenRoute: DTokenRoute,
+  DirectorAccessTokenRoute: DirectorAccessTokenRoute,
+  DirectorShellRoute: DirectorShellRouteWithChildren,
+  EntryTokenRoute: EntryTokenRoute,
+  DirectorHallsHallIdRoute: DirectorHallsHallIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

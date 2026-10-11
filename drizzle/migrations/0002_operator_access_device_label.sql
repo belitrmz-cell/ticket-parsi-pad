@@ -1,0 +1,1 @@
+ALTER TABLE public.operator_access ADD COLUMN IF NOT EXISTS device_label text NOT NULL DEFAULT '';

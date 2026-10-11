@@ -1,0 +1,2 @@
+ALTER TABLE public.tickets DROP CONSTRAINT IF EXISTS tickets_session_id_seat_id_key;
+CREATE UNIQUE INDEX IF NOT EXISTS tickets_session_seat_unique ON public.tickets (session_id, seat_id) WHERE status <> 'cancelled';
