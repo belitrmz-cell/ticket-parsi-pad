@@ -11,18 +11,22 @@ const PANEL_NAMES: Record<PanelKey, string> = {
 export const Route = createFileRoute("/api/public/manifest/$panel")({
   server: {
     handlers: {
-      GET: async ({ params }) => {
+      GET: async ({ params, request }) => {
         const panel = params.panel as PanelKey;
         if (!PANEL_KEYS.includes(panel)) return new Response("Not found", { status: 404 });
 
+        const fallback = panel === "admin" ? "/admin/login" : panel === "director" ? "/director/dashboard" : "/";
+        const raw = new URL(request.url).searchParams.get("start") ?? "";
+        // Only same-site paths are allowed as the start page.
+        const start = raw.startsWith("/") && !raw.startsWith("//") ? raw : fallback;
+
         const icon = `/api/public/panel-icon/${panel}`;
         const manifest = {
+          id: start,
           name: PANEL_NAMES[panel],
           short_name: PANEL_NAMES[panel].split(" | ")[0],
-          // "." resolves to the page the manifest was added from, so each
-          // panel's shared link (including its token) stays the start URL.
-          start_url: ".",
-          scope: ".",
+          start_url: start,
+          scope: "/",
           display: "standalone",
           dir: "rtl",
           lang: "fa",

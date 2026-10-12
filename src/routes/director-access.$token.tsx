@@ -13,8 +13,8 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const Route = createFileRoute("/director-access/$token")({
-  head: () => {
-    const pwa = panelPwaHead("director");
+  head: ({ params }) => {
+    const pwa = panelPwaHead("director", `/director-access/${params.token}`);
     return {
       meta: [
         { title: "ورود و ثبت‌نام کارگردان | سامانه بلیت" },
