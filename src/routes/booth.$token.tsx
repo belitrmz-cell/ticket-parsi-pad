@@ -13,8 +13,8 @@ import { panelPwaHead } from "@/lib/pwa";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/booth/$token")({
-  head: () => {
-    const pwa = panelPwaHead("booth");
+  head: ({ params }) => {
+    const pwa = panelPwaHead("booth", `/booth/${params.token}`);
     return {
       meta: [
         { title: "باجه فروش بلیت | سامانه بلیت" },

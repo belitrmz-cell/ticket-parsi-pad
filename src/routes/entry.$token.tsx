@@ -6,8 +6,8 @@ import { getDeviceId } from "@/lib/device";
 import { panelPwaHead } from "@/lib/pwa";
 
 export const Route = createFileRoute("/entry/$token")({
-  head: () => {
-    const pwa = panelPwaHead("entry");
+  head: ({ params }) => {
+    const pwa = panelPwaHead("entry", `/entry/${params.token}`);
     return {
       meta: [
         { title: "کنترل ورود | سامانه بلیت" },
