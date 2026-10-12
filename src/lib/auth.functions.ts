@@ -4,7 +4,8 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { emailForUsername, PERSIAN_ERRORS } from "./account";
 
 const ADMIN_USERNAME = "Admin";
-const ADMIN_PASSWORD = "Admin";
+// The backend rejects passwords under 6 chars or known-weak ones.
+const ADMIN_PASSWORD = "Salon#Admin2026";
 
 /** Creates the default Admin account once, and returns the fixed director link token. */
 export const bootstrapSystem = createServerFn({ method: "POST" }).handler(async () => {
