@@ -43,7 +43,7 @@ export function AdminSubscriptions() {
       _duration: edit.duration, _price: edit.price, _active: edit.is_active,
     });
     setBusy(false);
-    if (error) return toast.error(rpcError(error.message));
+    if (error) { toast.error(rpcError(error.message)); return; }
     toast.success("اشتراک ذخیره شد.");
     setEdit(null);
     void qc.invalidateQueries({ queryKey: ["admin-plans"] });
@@ -57,7 +57,7 @@ export function AdminSubscriptions() {
       reason = r;
     } else if (!window.confirm("پرداخت دریافت شده و اشتراک از همین الان فعال شود؟")) return;
     const { error } = await supabase.rpc("decide_subscription", { _request: id, _approve: approve, _reason: reason });
-    if (error) return toast.error(rpcError(error.message));
+    if (error) { toast.error(rpcError(error.message)); return; }
     toast.success(approve ? "اشتراک فعال شد." : "درخواست رد شد.");
     void qc.invalidateQueries({ queryKey: ["admin-sub-requests"] });
   };

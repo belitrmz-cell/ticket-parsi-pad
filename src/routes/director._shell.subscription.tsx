@@ -44,7 +44,7 @@ function DirectorSubscription() {
     setBusy(true);
     const { error } = await supabase.rpc("request_subscription", { _plan: pick });
     setBusy(false);
-    if (error) return toast.error(rpcError(error.message));
+    if (error) { toast.error(rpcError(error.message)); return; }
     toast.success("درخواست ثبت شد و در انتظار تأیید مدیر است.");
     setPick("");
     void qc.invalidateQueries({ queryKey: ["my-sub"] });
