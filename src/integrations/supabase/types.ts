@@ -517,6 +517,102 @@ export type Database = {
           },
         ]
       }
+      subscription_plans: {
+        Row: {
+          created_at: string
+          duration: number
+          id: string
+          is_active: boolean
+          kind: string
+          name: string
+          price: number
+        }
+        Insert: {
+          created_at?: string
+          duration: number
+          id?: string
+          is_active?: boolean
+          kind: string
+          name: string
+          price: number
+        }
+        Update: {
+          created_at?: string
+          duration?: number
+          id?: string
+          is_active?: boolean
+          kind?: string
+          name?: string
+          price?: number
+        }
+        Relationships: []
+      }
+      subscription_requests: {
+        Row: {
+          created_at: string
+          decided_at: string | null
+          decided_by: string | null
+          director_id: string
+          duration: number
+          ends_at: string | null
+          id: string
+          kind: string
+          plan_id: string
+          plan_name: string
+          price: number
+          reject_reason: string
+          starts_at: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          director_id: string
+          duration: number
+          ends_at?: string | null
+          id?: string
+          kind: string
+          plan_id: string
+          plan_name: string
+          price: number
+          reject_reason?: string
+          starts_at?: string | null
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          director_id?: string
+          duration?: number
+          ends_at?: string | null
+          id?: string
+          kind?: string
+          plan_id?: string
+          plan_name?: string
+          price?: number
+          reject_reason?: string
+          starts_at?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscription_requests_director_id_fkey"
+            columns: ["director_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "subscription_requests_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "subscription_plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tickets: {
         Row: {
           code: string
@@ -700,8 +796,13 @@ export type Database = {
         }
         Returns: string
       }
+      decide_subscription: {
+        Args: { _approve: boolean; _reason?: string; _request: string }
+        Returns: undefined
+      }
       delete_hall: { Args: { _hall: string }; Returns: string }
       delete_show: { Args: { _show: string }; Returns: string }
+      has_active_subscription: { Args: { _director: string }; Returns: boolean }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -710,6 +811,18 @@ export type Database = {
         Returns: boolean
       }
       owns_hall: { Args: { _hall: string }; Returns: boolean }
+      request_subscription: { Args: { _plan: string }; Returns: string }
+      save_subscription_plan: {
+        Args: {
+          _active: boolean
+          _duration: number
+          _id: string
+          _kind: string
+          _name: string
+          _price: number
+        }
+        Returns: string
+      }
     }
     Enums: {
       access_kind: "booth" | "entry"

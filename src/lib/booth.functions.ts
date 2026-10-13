@@ -1,6 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
+export const SALE_LOCKED_MESSAGE =
+  "فروش بلیت برای این پنل فعال نیست. برای فعال‌سازی فروش، از بخش خرید اشتراک درخواست خود را ثبت کنید. پس از پرداخت کارت‌به‌کارت و تأیید مدیر سامانه، امکان فروش بلیت فعال خواهد شد.";
+
 const authSchema = z.object({
   token: z.string().min(8),
   deviceId: z.string().min(8).max(80),
@@ -73,17 +76,19 @@ export const boothSeatMap = createServerFn({ method: "POST" })
       .maybeSingle();
     if (!session) throw new Error("not found");
     const hallId = session.hall_id;
-    const [rows, seats, objects, sold] = await Promise.all([
+    const [rows, seats, objects, sold, sub] = await Promise.all([
       db.from("hall_rows").select("id,label,x,y,order_index,price").eq("hall_id", hallId).order("order_index"),
       db.from("seats").select("id,row_id,number,x,y,is_active").eq("hall_id", hallId).gt("number", 0).order("number"),
       db.from("hall_objects").select("id,kind,label,x,y,width,height").eq("hall_id", hallId).eq("is_active", true),
       db.from("tickets").select("seat_id").eq("session_id", session.id).neq("status", "cancelled"),
+      db.rpc("has_active_subscription", { _director: a.directorId }),
     ]);
     return {
       rows: rows.data ?? [],
       seats: seats.data ?? [],
       objects: objects.data ?? [],
       soldSeatIds: (sold.data ?? []).map((t) => t.seat_id),
+      canSell: sub.data === true,
     };
   });
 
@@ -146,6 +151,7 @@ export const boothSell = createServerFn({ method: "POST" })
     });
     if (error) {
       const m = error.message;
+      if (m.includes("no_subscription")) return { ok: false as const, error: SALE_LOCKED_MESSAGE };
       if (m.includes("seat_sold") || m.includes("tickets_session_seat_unique"))
         return { ok: false as const, error: "یک یا چند صندلی همزمان فروخته شده است. نقشه را دوباره بررسی کنید." };
       if (m.includes("session_unavailable")) return { ok: false as const, error: "این سانس برای فروش فعال نیست." };
