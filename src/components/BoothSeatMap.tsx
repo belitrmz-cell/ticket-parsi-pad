@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Loader2, Printer } from "lucide-react";
 import { toast } from "sonner";
 import {
-  boothGetPrintSize, boothGetSwitch, boothSeatMap, boothSell, boothSessions, boothSetPrintSize, boothSetSwitch,
+  boothGetPrintSize, boothGetSwitch, boothSeatMap, boothSell, boothSessions, SALE_LOCKED_MESSAGE, boothSetPrintSize, boothSetSwitch,
   type SoldTicket,
 } from "@/lib/booth.functions";
 import { PRINT_SIZE_LABELS, printTickets, type PrintSize } from "@/lib/ticket-print";
@@ -134,6 +134,7 @@ export function BoothSeatMap({ auth }: { auth: Auth }) {
   const pickedTotal = pickedSeats.reduce((sum, s) => sum + seatPrice(s.row_id), 0);
 
   const toggle = (id: string, active: boolean) => {
+    if (map.data && !map.data.canSell) { toast.error(SALE_LOCKED_MESSAGE, { id: "sale-locked" }); return; }
     if (!active || sold.has(id)) return;
     setPicked((p) => (p.includes(id) ? p.filter((x) => x !== id) : [...p, id]));
   };
