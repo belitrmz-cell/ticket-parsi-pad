@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useSubscriptionStatus } from "./director._shell.subscription";
+import { useSubscriptionStatus } from "@/hooks/useSubscription";
 import { DIRECTOR_SALE_LOCKED } from "@/lib/subscription";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
@@ -65,6 +65,12 @@ function DirectorDashboard() {
   return (
     <>
       <PageTitle title="داشبورد" />
+      {sub.data && !sub.data.active && (
+        <div className="panel mb-4 space-y-3 border-primary/40 p-4">
+          <p className="text-sm leading-7">{DIRECTOR_SALE_LOCKED}</p>
+          <Button asChild size="sm"><Link to="/director/subscription">مشاهده و خرید اشتراک</Link></Button>
+        </div>
+      )}
       <div className="panel mb-4 grid gap-3 p-4 sm:grid-cols-2">
         <div className="space-y-1">
           <label className="text-sm font-semibold">تاریخ</label>

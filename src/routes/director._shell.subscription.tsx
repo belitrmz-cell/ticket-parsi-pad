@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useSubscriptionStatus } from "@/hooks/useSubscription";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -22,20 +23,6 @@ export const Route = createFileRoute("/director/_shell/subscription")({
   }),
   component: DirectorSubscription,
 });
-
-export function useSubscriptionStatus(userId: string | null | undefined) {
-  return useQuery({
-    queryKey: ["my-sub", userId],
-    enabled: !!userId,
-    queryFn: async () => {
-      const [{ data: active }, { data: reqs }] = await Promise.all([
-        supabase.rpc("has_active_subscription", { _director: userId! }),
-        supabase.from("subscription_requests").select("*").eq("director_id", userId!).order("created_at", { ascending: false }),
-      ]);
-      return { active: active === true, requests: reqs ?? [] };
-    },
-  });
-}
 
 function DirectorSubscription() {
   const { userId } = useAuth();

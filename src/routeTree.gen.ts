@@ -31,6 +31,7 @@ import { Route as DirectorShellReportsRouteImport } from './routes/director._she
 import { Route as DirectorShellSessionsRouteImport } from './routes/director._shell.sessions'
 import { Route as DirectorShellSettingsRouteImport } from './routes/director._shell.settings'
 import { Route as DirectorShellShowsRouteImport } from './routes/director._shell.shows'
+import { Route as DirectorShellSubscriptionRouteImport } from './routes/director._shell.subscription'
 import { Route as DirectorShellTicketsRouteImport } from './routes/director._shell.tickets'
 import { Route as DirectorHallsHallIdRouteImport } from './routes/director.halls.$hallId'
 import { Route as ApiPublicManifestIndexRouteImport } from './routes/api/public/manifest.index'
@@ -147,6 +148,12 @@ const DirectorShellShowsRoute = DirectorShellShowsRouteImport.update({
   path: '/shows',
   getParentRoute: () => DirectorShellRoute,
 } as any)
+const DirectorShellSubscriptionRoute =
+  DirectorShellSubscriptionRouteImport.update({
+    id: '/subscription',
+    path: '/subscription',
+    getParentRoute: () => DirectorShellRoute,
+  } as any)
 const DirectorShellTicketsRoute = DirectorShellTicketsRouteImport.update({
   id: '/tickets',
   path: '/tickets',
@@ -196,6 +203,7 @@ export interface FileRoutesByFullPath {
   '/director/sessions': typeof DirectorShellSessionsRoute
   '/director/settings': typeof DirectorShellSettingsRoute
   '/director/shows': typeof DirectorShellShowsRoute
+  '/director/subscription': typeof DirectorShellSubscriptionRoute
   '/director/tickets': typeof DirectorShellTicketsRoute
   '/director/halls/$hallId': typeof DirectorHallsHallIdRoute
   '/api/public/manifest/$panel': typeof ApiPublicManifestPanelRoute
@@ -225,6 +233,7 @@ export interface FileRoutesByTo {
   '/director/sessions': typeof DirectorShellSessionsRoute
   '/director/settings': typeof DirectorShellSettingsRoute
   '/director/shows': typeof DirectorShellShowsRoute
+  '/director/subscription': typeof DirectorShellSubscriptionRoute
   '/director/tickets': typeof DirectorShellTicketsRoute
   '/director/halls/$hallId': typeof DirectorHallsHallIdRoute
   '/api/public/manifest/$panel': typeof ApiPublicManifestPanelRoute
@@ -255,6 +264,7 @@ export interface FileRoutesById {
   '/director/_shell/sessions': typeof DirectorShellSessionsRoute
   '/director/_shell/settings': typeof DirectorShellSettingsRoute
   '/director/_shell/shows': typeof DirectorShellShowsRoute
+  '/director/_shell/subscription': typeof DirectorShellSubscriptionRoute
   '/director/_shell/tickets': typeof DirectorShellTicketsRoute
   '/director/halls/$hallId': typeof DirectorHallsHallIdRoute
   '/api/public/manifest/$panel': typeof ApiPublicManifestPanelRoute
@@ -286,6 +296,7 @@ export interface FileRouteTypes {
     | '/director/sessions'
     | '/director/settings'
     | '/director/shows'
+    | '/director/subscription'
     | '/director/tickets'
     | '/director/halls/$hallId'
     | '/api/public/manifest/$panel'
@@ -315,6 +326,7 @@ export interface FileRouteTypes {
     | '/director/sessions'
     | '/director/settings'
     | '/director/shows'
+    | '/director/subscription'
     | '/director/tickets'
     | '/director/halls/$hallId'
     | '/api/public/manifest/$panel'
@@ -344,6 +356,7 @@ export interface FileRouteTypes {
     | '/director/_shell/sessions'
     | '/director/_shell/settings'
     | '/director/_shell/shows'
+    | '/director/_shell/subscription'
     | '/director/_shell/tickets'
     | '/director/halls/$hallId'
     | '/api/public/manifest/$panel'
@@ -523,6 +536,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DirectorShellShowsRouteImport
       parentRoute: typeof DirectorShellRoute
     }
+    '/director/_shell/subscription': {
+      id: '/director/_shell/subscription'
+      path: '/subscription'
+      fullPath: '/director/subscription'
+      preLoaderRoute: typeof DirectorShellSubscriptionRouteImport
+      parentRoute: typeof DirectorShellRoute
+    }
     '/director/_shell/tickets': {
       id: '/director/_shell/tickets'
       path: '/tickets'
@@ -591,6 +611,7 @@ interface DirectorShellRouteChildren {
   DirectorShellSessionsRoute: typeof DirectorShellSessionsRoute
   DirectorShellSettingsRoute: typeof DirectorShellSettingsRoute
   DirectorShellShowsRoute: typeof DirectorShellShowsRoute
+  DirectorShellSubscriptionRoute: typeof DirectorShellSubscriptionRoute
   DirectorShellTicketsRoute: typeof DirectorShellTicketsRoute
 }
 
@@ -602,6 +623,7 @@ const DirectorShellRouteChildren: DirectorShellRouteChildren = {
   DirectorShellSessionsRoute: DirectorShellSessionsRoute,
   DirectorShellSettingsRoute: DirectorShellSettingsRoute,
   DirectorShellShowsRoute: DirectorShellShowsRoute,
+  DirectorShellSubscriptionRoute: DirectorShellSubscriptionRoute,
   DirectorShellTicketsRoute: DirectorShellTicketsRoute,
 }
 
