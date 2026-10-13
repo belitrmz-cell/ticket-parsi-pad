@@ -10,6 +10,7 @@ import {
   Settings,
   Loader2,
   CalendarClock,
+  CreditCard,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { panelPwaHead } from "@/lib/pwa";
@@ -28,6 +29,7 @@ const items = [
   { to: "/director/tickets", label: "بلیت‌ها", icon: <Ticket className="size-4" /> },
   { to: "/director/operators", label: "اپراتورها", icon: <Users className="size-4" /> },
   { to: "/director/reports", label: "گزارش‌ها", icon: <BarChart3 className="size-4" /> },
+  { to: "/director/subscription", label: "خرید اشتراک", icon: <CreditCard className="size-4" /> },
   { to: "/director/settings", label: "تنظیمات", icon: <Settings className="size-4" /> },
 ];
 

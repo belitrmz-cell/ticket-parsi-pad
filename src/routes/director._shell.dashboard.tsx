@@ -1,4 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useSubscriptionStatus } from "./director._shell.subscription";
+import { DIRECTOR_SALE_LOCKED } from "@/lib/subscription";
+import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -33,6 +36,7 @@ function DirectorDashboard() {
   const [day, setDay] = useState(() => localDateStr(new Date()));
   const [sessionId, setSessionId] = useState("");
   const range = dayRange(day);
+  const sub = useSubscriptionStatus(userId);
 
   const sessions = useQuery({
     queryKey: ["dash-sessions", userId, day],

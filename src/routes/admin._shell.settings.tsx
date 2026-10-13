@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { setPanelIcon, type PanelKey } from "@/lib/panel-icons.functions";
 import { usePanelIcons } from "@/components/PanelIcon";
+import { AdminSubscriptions } from "@/components/AdminSubscriptions";
 
 export const Route = createFileRoute("/admin/_shell/settings")({
   component: AdminSettings,
@@ -59,6 +60,7 @@ function AdminSettings() {
   return (
     <>
       <PageTitle title="تنظیمات" />
+      <AdminSubscriptions />
       <div className="panel p-5">
         <h2 className="font-semibold">لینک ثابت کارگردان</h2>
         <p className="mt-1 text-xs leading-6 text-muted-foreground">
