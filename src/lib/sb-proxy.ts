@@ -4,7 +4,7 @@ export const SB_PROXY_PREFIX = "/api/public/sb";
 
 if (typeof window !== "undefined" && !(window as unknown as { __sbProxy?: boolean }).__sbProxy) {
   (window as unknown as { __sbProxy?: boolean }).__sbProxy = true;
-  const base = String(import.meta.env.VITE_SUPABASE_URL ?? "").replace(/\/+$/, "");
+  const base = String(import.meta.env['VITE_SUPABASE_URL'] ?? "").replace(/\/+$/, "");
   const original = window.fetch.bind(window);
   if (base) {
     window.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
