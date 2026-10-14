@@ -18,7 +18,7 @@ async function relay({ request, params }: { request: Request; params: { _splat?:
   const res = await fetch(`${base}/${path}${src.search}`, {
     method: request.method,
     headers,
-    body: hasBody ? await request.arrayBuffer() : undefined,
+    body: hasBody ? await request.arrayBuffer() : null,
     redirect: "manual",
   });
   const out = new Headers(res.headers);
