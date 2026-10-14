@@ -11,7 +11,7 @@ import { durationLabel, kindLabel, requestState, rpcError, type SubKind } from "
 type Plan = { id: string | null; name: string; kind: SubKind; duration: number; price: number; is_active: boolean };
 const EMPTY: Plan = { id: null, name: "", kind: "daily", duration: 1, price: 100000, is_active: true };
 
-export function AdminSubscriptions() {
+export function AdminSubscriptions({ view = "all" }: { view?: "all" | "plans" | "requests" } = {}) {
   const qc = useQueryClient();
   const plans = useQuery({
     queryKey: ["admin-plans"],
@@ -66,7 +66,7 @@ export function AdminSubscriptions() {
 
   return (
     <>
-      <div className="panel mt-4 space-y-4 p-5">
+      {view !== "requests" && (<div className="panel mt-4 space-y-4 p-5">
         <div className="flex items-center justify-between">
           <h2 className="font-semibold">اشتراک‌های فروش بلیت</h2>
           <Button size="sm" onClick={() => setEdit({ ...EMPTY })}>اشتراک جدید</Button>
@@ -109,9 +109,9 @@ export function AdminSubscriptions() {
             </div>
           </div>
         )}
-      </div>
+      </div>)}
 
-      <div className="panel mt-4 space-y-3 p-5">
+      {view !== "plans" && (<div className="panel mt-4 space-y-3 p-5">
         <h2 className="font-semibold">درخواست‌های خرید اشتراک</h2>
         {(reqs.data ?? []).length === 0 && <p className="text-sm text-muted-foreground">درخواستی ثبت نشده است.</p>}
         {(reqs.data ?? []).map((r) => {
@@ -140,7 +140,7 @@ export function AdminSubscriptions() {
             </div>
           );
         })}
-      </div>
+      </div>)}
     </>
   );
 }

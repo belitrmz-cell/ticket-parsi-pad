@@ -32,8 +32,8 @@ export function AdminAccountSettings() {
   };
 
   const savePass = async () => {
-    if (p1.length < 6) return toast.error("رمز باید حداقل ۶ نویسه باشد.");
-    if (p1 !== p2) return toast.error("رمز و تکرار آن یکسان نیستند.");
+    if (p1.length < 6) { toast.error("رمز باید حداقل ۶ نویسه باشد."); return; }
+    if (p1 !== p2) { toast.error("رمز و تکرار آن یکسان نیستند."); return; }
     setBusy(true);
     try {
       await changeAdminPassword({ data: { password: p1 } });
