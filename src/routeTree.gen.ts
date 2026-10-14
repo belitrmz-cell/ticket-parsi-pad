@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AdminShellRouteImport } from './routes/admin._shell'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminResetRouteImport } from './routes/admin.reset'
 import { Route as BoothTokenRouteImport } from './routes/booth.$token'
 import { Route as DTokenRouteImport } from './routes/d.$token'
 import { Route as DirectorAccessTokenRouteImport } from './routes/director-access.$token'
@@ -24,6 +25,7 @@ import { Route as AdminShellReportsRouteImport } from './routes/admin._shell.rep
 import { Route as AdminShellRequestsRouteImport } from './routes/admin._shell.requests'
 import { Route as AdminShellSettingsRouteImport } from './routes/admin._shell.settings'
 import { Route as AdminShellShowsRouteImport } from './routes/admin._shell.shows'
+import { Route as AdminShellSubscriptionsRouteImport } from './routes/admin._shell.subscriptions'
 import { Route as DirectorShellDashboardRouteImport } from './routes/director._shell.dashboard'
 import { Route as DirectorShellHallsRouteImport } from './routes/director._shell.halls'
 import { Route as DirectorShellOperatorsRouteImport } from './routes/director._shell.operators'
@@ -57,6 +59,11 @@ const AdminShellRoute = AdminShellRouteImport.update({
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
   path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminResetRoute = AdminResetRouteImport.update({
+  id: '/admin/reset',
+  path: '/admin/reset',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BoothTokenRoute = BoothTokenRouteImport.update({
@@ -112,6 +119,11 @@ const AdminShellSettingsRoute = AdminShellSettingsRouteImport.update({
 const AdminShellShowsRoute = AdminShellShowsRouteImport.update({
   id: '/shows',
   path: '/shows',
+  getParentRoute: () => AdminShellRoute,
+} as any)
+const AdminShellSubscriptionsRoute = AdminShellSubscriptionsRouteImport.update({
+  id: '/subscriptions',
+  path: '/subscriptions',
   getParentRoute: () => AdminShellRoute,
 } as any)
 const DirectorShellDashboardRoute = DirectorShellDashboardRouteImport.update({
@@ -191,6 +203,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/admin': typeof AdminShellRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
+  '/admin/reset': typeof AdminResetRoute
   '/booth/$token': typeof BoothTokenRoute
   '/d/$token': typeof DTokenRoute
   '/director-access/$token': typeof DirectorAccessTokenRoute
@@ -202,6 +215,7 @@ export interface FileRoutesByFullPath {
   '/admin/requests': typeof AdminShellRequestsRoute
   '/admin/settings': typeof AdminShellSettingsRoute
   '/admin/shows': typeof AdminShellShowsRoute
+  '/admin/subscriptions': typeof AdminShellSubscriptionsRoute
   '/director/dashboard': typeof DirectorShellDashboardRoute
   '/director/halls': typeof DirectorShellHallsRoute
   '/director/operators': typeof DirectorShellOperatorsRoute
@@ -222,6 +236,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/admin': typeof AdminShellRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
+  '/admin/reset': typeof AdminResetRoute
   '/booth/$token': typeof BoothTokenRoute
   '/d/$token': typeof DTokenRoute
   '/director-access/$token': typeof DirectorAccessTokenRoute
@@ -233,6 +248,7 @@ export interface FileRoutesByTo {
   '/admin/requests': typeof AdminShellRequestsRoute
   '/admin/settings': typeof AdminShellSettingsRoute
   '/admin/shows': typeof AdminShellShowsRoute
+  '/admin/subscriptions': typeof AdminShellSubscriptionsRoute
   '/director/dashboard': typeof DirectorShellDashboardRoute
   '/director/halls': typeof DirectorShellHallsRoute
   '/director/operators': typeof DirectorShellOperatorsRoute
@@ -254,6 +270,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/admin/_shell': typeof AdminShellRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
+  '/admin/reset': typeof AdminResetRoute
   '/booth/$token': typeof BoothTokenRoute
   '/d/$token': typeof DTokenRoute
   '/director-access/$token': typeof DirectorAccessTokenRoute
@@ -265,6 +282,7 @@ export interface FileRoutesById {
   '/admin/_shell/requests': typeof AdminShellRequestsRoute
   '/admin/_shell/settings': typeof AdminShellSettingsRoute
   '/admin/_shell/shows': typeof AdminShellShowsRoute
+  '/admin/_shell/subscriptions': typeof AdminShellSubscriptionsRoute
   '/director/_shell/dashboard': typeof DirectorShellDashboardRoute
   '/director/_shell/halls': typeof DirectorShellHallsRoute
   '/director/_shell/operators': typeof DirectorShellOperatorsRoute
@@ -287,6 +305,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/admin'
     | '/admin/login'
+    | '/admin/reset'
     | '/booth/$token'
     | '/d/$token'
     | '/director-access/$token'
@@ -298,6 +317,7 @@ export interface FileRouteTypes {
     | '/admin/requests'
     | '/admin/settings'
     | '/admin/shows'
+    | '/admin/subscriptions'
     | '/director/dashboard'
     | '/director/halls'
     | '/director/operators'
@@ -318,6 +338,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/admin'
     | '/admin/login'
+    | '/admin/reset'
     | '/booth/$token'
     | '/d/$token'
     | '/director-access/$token'
@@ -329,6 +350,7 @@ export interface FileRouteTypes {
     | '/admin/requests'
     | '/admin/settings'
     | '/admin/shows'
+    | '/admin/subscriptions'
     | '/director/dashboard'
     | '/director/halls'
     | '/director/operators'
@@ -349,6 +371,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/admin/_shell'
     | '/admin/login'
+    | '/admin/reset'
     | '/booth/$token'
     | '/d/$token'
     | '/director-access/$token'
@@ -360,6 +383,7 @@ export interface FileRouteTypes {
     | '/admin/_shell/requests'
     | '/admin/_shell/settings'
     | '/admin/_shell/shows'
+    | '/admin/_shell/subscriptions'
     | '/director/_shell/dashboard'
     | '/director/_shell/halls'
     | '/director/_shell/operators'
@@ -381,6 +405,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   AdminShellRoute: typeof AdminShellRouteWithChildren
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminResetRoute: typeof AdminResetRoute
   BoothTokenRoute: typeof BoothTokenRoute
   DTokenRoute: typeof DTokenRoute
   DirectorAccessTokenRoute: typeof DirectorAccessTokenRoute
@@ -421,6 +446,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/login'
       fullPath: '/admin/login'
       preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/reset': {
+      id: '/admin/reset'
+      path: '/admin/reset'
+      fullPath: '/admin/reset'
+      preLoaderRoute: typeof AdminResetRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/booth/$token': {
@@ -498,6 +530,13 @@ declare module '@tanstack/react-router' {
       path: '/shows'
       fullPath: '/admin/shows'
       preLoaderRoute: typeof AdminShellShowsRouteImport
+      parentRoute: typeof AdminShellRoute
+    }
+    '/admin/_shell/subscriptions': {
+      id: '/admin/_shell/subscriptions'
+      path: '/subscriptions'
+      fullPath: '/admin/subscriptions'
+      preLoaderRoute: typeof AdminShellSubscriptionsRouteImport
       parentRoute: typeof AdminShellRoute
     }
     '/director/_shell/dashboard': {
@@ -608,6 +647,7 @@ interface AdminShellRouteChildren {
   AdminShellRequestsRoute: typeof AdminShellRequestsRoute
   AdminShellSettingsRoute: typeof AdminShellSettingsRoute
   AdminShellShowsRoute: typeof AdminShellShowsRoute
+  AdminShellSubscriptionsRoute: typeof AdminShellSubscriptionsRoute
 }
 
 const AdminShellRouteChildren: AdminShellRouteChildren = {
@@ -617,6 +657,7 @@ const AdminShellRouteChildren: AdminShellRouteChildren = {
   AdminShellRequestsRoute: AdminShellRequestsRoute,
   AdminShellSettingsRoute: AdminShellSettingsRoute,
   AdminShellShowsRoute: AdminShellShowsRoute,
+  AdminShellSubscriptionsRoute: AdminShellSubscriptionsRoute,
 }
 
 const AdminShellRouteWithChildren = AdminShellRoute._addFileChildren(
@@ -656,6 +697,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   AdminShellRoute: AdminShellRouteWithChildren,
   AdminLoginRoute: AdminLoginRoute,
+  AdminResetRoute: AdminResetRoute,
   BoothTokenRoute: BoothTokenRoute,
   DTokenRoute: DTokenRoute,
   DirectorAccessTokenRoute: DirectorAccessTokenRoute,
