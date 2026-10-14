@@ -26,12 +26,12 @@ function AdminReset() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (p1.length < 6) return toast.error("رمز باید حداقل ۶ نویسه باشد.");
-    if (p1 !== p2) return toast.error("رمز و تکرار آن یکسان نیستند.");
+    if (p1.length < 6) { toast.error("رمز باید حداقل ۶ نویسه باشد."); return; }
+    if (p1 !== p2) { toast.error("رمز و تکرار آن یکسان نیستند."); return; }
     setBusy(true);
     const { error } = await supabase.auth.updateUser({ password: p1 });
     setBusy(false);
-    if (error) return toast.error("لینک منقضی شده یا رمز پذیرفته نشد.");
+    if (error) { toast.error("لینک منقضی شده یا رمز پذیرفته نشد."); return; }
     toast.success("رمز جدید ثبت شد.");
     navigate({ to: "/admin/dashboard" });
   };
