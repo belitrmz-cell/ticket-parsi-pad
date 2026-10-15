@@ -7,6 +7,7 @@ import {
   Theater,
   BarChart3,
   Settings,
+  CreditCard,
   Loader2,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
@@ -23,6 +24,7 @@ const items = [
   { to: "/admin/directors", label: "کارگردان‌ها", icon: <Users className="size-4" /> },
   { to: "/admin/requests", label: "درخواست‌های ثبت‌نام", icon: <UserPlus className="size-4" /> },
   { to: "/admin/shows", label: "نمایش‌ها", icon: <Theater className="size-4" /> },
+  { to: "/admin/subscriptions", label: "اشتراک‌ها", icon: <CreditCard className="size-4" /> },
   { to: "/admin/reports", label: "گزارش‌ها", icon: <BarChart3 className="size-4" /> },
   { to: "/admin/settings", label: "تنظیمات", icon: <Settings className="size-4" /> },
 ];

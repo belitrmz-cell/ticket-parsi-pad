@@ -5,7 +5,8 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { bootstrapSystem } from "@/lib/auth.functions";
 import { panelPwaHead } from "@/lib/pwa";
-import { emailForUsername, PERSIAN_ERRORS } from "@/lib/account";
+import { PERSIAN_ERRORS } from "@/lib/account";
+import { adminSignIn, requestAdminRecovery } from "@/lib/admin-account.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -41,6 +42,7 @@ function AdminLogin() {
   const [show, setShow] = useState(false);
   const [busy, setBusy] = useState(false);
   const [forgot, setForgot] = useState(false);
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     void bootstrapSystem();
@@ -53,27 +55,33 @@ function AdminLogin() {
       return;
     }
     setBusy(true);
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: emailForUsername(username),
-      password,
-    });
-    if (error || !data.user) {
-      setBusy(false);
-      toast.error(PERSIAN_ERRORS.invalidCredentials);
-      return;
+    try {
+      const r = await adminSignIn({ data: { username: username.trim(), password: password.trim() } });
+      if ("error" in r && r.error) throw new Error(r.error);
+      const { error } = await supabase.auth.setSession({
+        access_token: (r as { access_token: string }).access_token,
+        refresh_token: (r as { refresh_token: string }).refresh_token,
+      });
+      if (error) throw new Error(PERSIAN_ERRORS.invalidCredentials);
+      toast.success("خوش آمدید");
+      navigate({ to: "/admin/dashboard" });
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : PERSIAN_ERRORS.invalidCredentials);
     }
-    const { data: roles } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", data.user.id);
-    if (!roles?.some((r) => r.role === "admin")) {
-      await supabase.auth.signOut();
-      setBusy(false);
-      toast.error(PERSIAN_ERRORS.notAdmin);
-      return;
+    setBusy(false);
+  };
+
+  const recover = async () => {
+    setSending(true);
+    try {
+      const r = await requestAdminRecovery({ data: { origin: window.location.origin } });
+      if (r.ok) toast.success("لینک تعیین رمز جدید به ایمیل بازیابی ارسال شد.");
+      else if (r.reason === "no_email") toast.error("ایمیل بازیابی در تنظیمات ثبت نشده است.");
+      else toast.error("ارسال ایمیل ناموفق بود؛ کمی بعد دوباره امتحان کنید.");
+    } catch {
+      toast.error("ارسال ایمیل ناموفق بود.");
     }
-    toast.success("خوش آمدید");
-    navigate({ to: "/admin/dashboard" });
+    setSending(false);
   };
 
   return (
@@ -133,9 +141,14 @@ function AdminLogin() {
           <DialogHeader>
             <DialogTitle>فراموشی رمز عبور</DialogTitle>
             <DialogDescription>
-              برای بازیابی رمز عبور مدیر سامانه، با پشتیبانی فنی سامانه تماس بگیرید. به دلایل
-              امنیتی، بازیابی رمز مدیر از طریق فرم عمومی انجام نمی‌شود.
+              نام کاربری مدیر «Admin» است. با زدن دکمه زیر، لینک تعیین رمز جدید به ایمیل بازیابی
+              ثبت‌شده در تنظیمات ارسال می‌شود.
             </DialogDescription>
+          </DialogHeader>
+          <Button onClick={() => void recover()} disabled={sending}>
+            {sending ? <Loader2 className="size-4 animate-spin" /> : "ارسال لینک بازیابی"}
+          </Button>
+          <DialogHeader>
           </DialogHeader>
         </DialogContent>
       </Dialog>
