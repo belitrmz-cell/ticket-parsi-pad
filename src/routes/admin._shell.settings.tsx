@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { setPanelIcon, type PanelKey } from "@/lib/panel-icons.functions";
 import { usePanelIcons } from "@/components/PanelIcon";
-import { AdminSubscriptions } from "@/components/AdminSubscriptions";
+import { AdminAccountSettings } from "@/components/AdminAccountSettings";
 
 export const Route = createFileRoute("/admin/_shell/settings")({
   component: AdminSettings,
@@ -60,7 +60,7 @@ function AdminSettings() {
   return (
     <>
       <PageTitle title="تنظیمات" />
-      <AdminSubscriptions />
+      <AdminAccountSettings />
       <div className="panel p-5">
         <h2 className="font-semibold">لینک ثابت کارگردان</h2>
         <p className="mt-1 text-xs leading-6 text-muted-foreground">
@@ -104,11 +104,6 @@ function AdminSettings() {
         </div>
       </div>
 
-      <div className="panel mt-4 p-5 text-sm leading-7 text-muted-foreground">
-        <h2 className="mb-2 font-semibold text-foreground">اطلاعات حساب مدیر</h2>
-        نام کاربری پیش‌فرض مدیر «Admin» است. برای امنیت بیشتر، رمز عبور پیش‌فرض را از طریق پشتیبانی
-        سامانه تغییر دهید.
-      </div>
 
       <PanelIconsSettings />
     </>
