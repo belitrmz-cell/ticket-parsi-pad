@@ -48,7 +48,6 @@ export async function printTickets(
     }),
   );
   w.document.write(`<!doctype html><html dir="rtl" lang="fa"><head><meta charset="utf-8"><title>چاپ بلیت</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap">
     <style>*{box-sizing:border-box}body{font-family:Vazirmatn,Tahoma,sans-serif;margin:0;color:#000}
     .t{display:flex;justify-content:space-between;align-items:center;border:1.5px dashed #000;border-radius:6px}
     .info{display:flex;flex-direction:column;gap:2mm} h1{margin:0} .seat{font-weight:700} .muted{color:#444}
