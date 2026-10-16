@@ -4,7 +4,7 @@ let installed = false;
 
 export function installBackendRelay() {
   if (installed || typeof window === "undefined") return;
-  const base = (import.meta.env.VITE_SUPABASE_URL as string | undefined)?.replace(/\/$/, "");
+  const base = (import.meta.env["VITE_SUPABASE_URL"] as string | undefined)?.replace(/\/$/, "");
   if (!base) return;
   installed = true;
   const original = window.fetch.bind(window);
