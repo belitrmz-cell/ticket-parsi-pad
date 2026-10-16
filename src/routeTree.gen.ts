@@ -39,7 +39,6 @@ import { Route as DirectorHallsHallIdRouteImport } from './routes/director.halls
 import { Route as ApiPublicManifestIndexRouteImport } from './routes/api/public/manifest.index'
 import { Route as ApiPublicManifestPanelRouteImport } from './routes/api/public/manifest.$panel'
 import { Route as ApiPublicPanelIconPanelRouteImport } from './routes/api/public/panel-icon.$panel'
-import { Route as ApiPublicSbSplatRouteImport } from './routes/api/public/sb.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -192,11 +191,6 @@ const ApiPublicPanelIconPanelRoute = ApiPublicPanelIconPanelRouteImport.update({
   path: '/api/public/panel-icon/$panel',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicSbSplatRoute = ApiPublicSbSplatRouteImport.update({
-  id: '/api/public/sb/$',
-  path: '/api/public/sb/$',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -228,7 +222,6 @@ export interface FileRoutesByFullPath {
   '/director/halls/$hallId': typeof DirectorHallsHallIdRoute
   '/api/public/manifest/$panel': typeof ApiPublicManifestPanelRoute
   '/api/public/panel-icon/$panel': typeof ApiPublicPanelIconPanelRoute
-  '/api/public/sb/$': typeof ApiPublicSbSplatRoute
   '/api/public/manifest/': typeof ApiPublicManifestIndexRoute
 }
 export interface FileRoutesByTo {
@@ -261,7 +254,6 @@ export interface FileRoutesByTo {
   '/director/halls/$hallId': typeof DirectorHallsHallIdRoute
   '/api/public/manifest/$panel': typeof ApiPublicManifestPanelRoute
   '/api/public/panel-icon/$panel': typeof ApiPublicPanelIconPanelRoute
-  '/api/public/sb/$': typeof ApiPublicSbSplatRoute
   '/api/public/manifest': typeof ApiPublicManifestIndexRoute
 }
 export interface FileRoutesById {
@@ -295,7 +287,6 @@ export interface FileRoutesById {
   '/director/halls/$hallId': typeof DirectorHallsHallIdRoute
   '/api/public/manifest/$panel': typeof ApiPublicManifestPanelRoute
   '/api/public/panel-icon/$panel': typeof ApiPublicPanelIconPanelRoute
-  '/api/public/sb/$': typeof ApiPublicSbSplatRoute
   '/api/public/manifest/': typeof ApiPublicManifestIndexRoute
 }
 export interface FileRouteTypes {
@@ -330,7 +321,6 @@ export interface FileRouteTypes {
     | '/director/halls/$hallId'
     | '/api/public/manifest/$panel'
     | '/api/public/panel-icon/$panel'
-    | '/api/public/sb/$'
     | '/api/public/manifest/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -363,7 +353,6 @@ export interface FileRouteTypes {
     | '/director/halls/$hallId'
     | '/api/public/manifest/$panel'
     | '/api/public/panel-icon/$panel'
-    | '/api/public/sb/$'
     | '/api/public/manifest'
   id:
     | '__root__'
@@ -396,7 +385,6 @@ export interface FileRouteTypes {
     | '/director/halls/$hallId'
     | '/api/public/manifest/$panel'
     | '/api/public/panel-icon/$panel'
-    | '/api/public/sb/$'
     | '/api/public/manifest/'
   fileRoutesById: FileRoutesById
 }
@@ -414,7 +402,6 @@ export interface RootRouteChildren {
   DirectorHallsHallIdRoute: typeof DirectorHallsHallIdRoute
   ApiPublicManifestPanelRoute: typeof ApiPublicManifestPanelRoute
   ApiPublicPanelIconPanelRoute: typeof ApiPublicPanelIconPanelRoute
-  ApiPublicSbSplatRoute: typeof ApiPublicSbSplatRoute
   ApiPublicManifestIndexRoute: typeof ApiPublicManifestIndexRoute
 }
 
@@ -630,13 +617,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicPanelIconPanelRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/sb/$': {
-      id: '/api/public/sb/$'
-      path: '/api/public/sb/$'
-      fullPath: '/api/public/sb/$'
-      preLoaderRoute: typeof ApiPublicSbSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -706,7 +686,6 @@ const rootRouteChildren: RootRouteChildren = {
   DirectorHallsHallIdRoute: DirectorHallsHallIdRoute,
   ApiPublicManifestPanelRoute: ApiPublicManifestPanelRoute,
   ApiPublicPanelIconPanelRoute: ApiPublicPanelIconPanelRoute,
-  ApiPublicSbSplatRoute: ApiPublicSbSplatRoute,
   ApiPublicManifestIndexRoute: ApiPublicManifestIndexRoute,
 }
 export const routeTree = rootRouteImport
